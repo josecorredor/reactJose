@@ -1,0 +1,13 @@
+{
+    "type": "mysql",
+    "host": "linqueate.com",
+    "port": 3306,
+    "username": "linqueat_react",
+    "password": "Brisbane2020",
+    "database": "linqueat_powerbi",
+    "entities": [
+      "src/entity/*.ts"
+    ],
+    "logging": false,
+    "synchronize": true
+  }
