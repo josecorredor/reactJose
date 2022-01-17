@@ -14,7 +14,7 @@ createConnection().then(connection => {
   const allowedOrigins = ['http://localhost:3000'];
   const options: cors.CorsOptions = {
     credentials:true,
-    origin: allowedOrigins
+    origin: "allowedOrigins"
   };
 
   routes(app);

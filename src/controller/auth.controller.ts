@@ -44,6 +44,7 @@ export const Login = async (req: Request, res: Response) => {
    const repository = getManager().getRepository(c_person);
    
    const C_person = await repository.findOne({email: req.body.email});
+
    
    if(!C_person) {
       return res.status(404).send({
@@ -65,7 +66,7 @@ export const Login = async (req: Request, res: Response) => {
       maxAge: 24 * 60* 60 * 1000 //1 day
    })
 
-   const {password, ...data}= C_person;
+   //const {password, ...data}= C_person;
 
    res.send({
       message: 'success'

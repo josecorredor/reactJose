@@ -1,10 +1,13 @@
-import { Router } from "express";
+import express, { Router } from "express";
 import { AuthenticatedUser, Login, Logout, Register, UpdateInfo, UpdatePassword } from "./controller/auth.controller";
+import { Upload } from "./controller/image.controller";
+import { Chart, Export, Orders } from "./controller/order.controller";
 import { Permissions } from "./controller/permission.controller";
 import { CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct } from "./controller/product.controller";
 import { CreateRole, DeleteRole, GetRole, Roles, UpdateRole } from "./controller/role.controller";
 import { CreateUser, DeleteUser, GetUser, UpdateUser, Users } from "./controller/user.controller";
 import { AuthMiddleware } from "./middleware/auth.middleware";
+import { PermissionMiddleware } from "./middleware/permission.middleware";
 
 
 export const routes = (router: Router) => {
@@ -15,11 +18,11 @@ export const routes = (router: Router) => {
     router.put('/api/users/info', AuthMiddleware, UpdateInfo);
     router.put('/api/users/password', AuthMiddleware, UpdatePassword);
 
-    router.get('/api/users', AuthMiddleware, Users);
-    router.post('/api/users', AuthMiddleware, CreateUser);
-    router.get('/api/users/:id_person', AuthMiddleware, GetUser);
-    router.put('/api/users/:id_person', AuthMiddleware, UpdateUser);
-    router.delete('/api/users/:id_person', AuthMiddleware, DeleteUser);
+    router.get('/api/users', AuthMiddleware, PermissionMiddleware('users'), Users);
+    router.post('/api/users', AuthMiddleware, PermissionMiddleware('users'), CreateUser);
+    router.get('/api/users/:id_person', AuthMiddleware, PermissionMiddleware('users'), GetUser);
+    router.put('/api/users/:id_person', AuthMiddleware, PermissionMiddleware('users'), UpdateUser);
+    router.delete('/api/users/:id_person', AuthMiddleware, PermissionMiddleware('users'), DeleteUser);
 
     router.get('/api/permissions', AuthMiddleware, Permissions);
 
@@ -29,9 +32,16 @@ export const routes = (router: Router) => {
     router.put('/api/roles/:id_role', AuthMiddleware, UpdateRole);
     router.delete('/api/roles/:id_role', AuthMiddleware, DeleteRole);
 
-    router.get('/api/products', AuthMiddleware, Products);
-    router.post('/api/products', AuthMiddleware, CreateProduct);
-    router.get('/api/products/:id_product', AuthMiddleware, GetProduct);
-    router.put('/api/products/:id_product', AuthMiddleware, UpdateProduct);
-    router.delete('/api/products/:id_product', AuthMiddleware, DeleteProduct);
+    router.get('/api/products', AuthMiddleware, PermissionMiddleware('products'), Products);
+    router.post('/api/products', AuthMiddleware, PermissionMiddleware('products'), CreateProduct);
+    router.get('/api/products/:id_product', AuthMiddleware, PermissionMiddleware('products'), GetProduct);
+    router.put('/api/products/:id_product', AuthMiddleware, PermissionMiddleware('products'), UpdateProduct);
+    router.delete('/api/products/:id_product', AuthMiddleware, PermissionMiddleware('products'), DeleteProduct);
+
+    router.post('/api/upload', AuthMiddleware, Upload);
+    router.use('/api/uploads', express.static('./uploads'));
+
+    router.get('/api/orders', AuthMiddleware, Orders);
+    router.post('/api/export', AuthMiddleware, Export);
+    router.get('/api/chart', AuthMiddleware, Chart);
 }

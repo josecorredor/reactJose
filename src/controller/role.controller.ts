@@ -17,7 +17,7 @@ export const CreateRole = async (req: Request, res: Response) => {
 
     const role = await repository.save({
         name,
-        permissions: permissions.map(id_permission => ({id_permission}))
+        permissions: permissions.map((id_permission: any) => ({id_permission}))
     });
     res.status(201).send(role);
 }
@@ -37,7 +37,7 @@ export const UpdateRole = async (req: Request, res: Response) => {
     const role = await repository.save({
         id_role: parseInt(req.params.id_role),
         name,
-        permissions: permissions.map(id_permission => ({id_permission}))
+        permissions: permissions.map((id_permission: any) => ({id_permission}))
     });
     res.status(202).send(role);
 }
