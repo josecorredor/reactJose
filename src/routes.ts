@@ -1,10 +1,14 @@
 import express, { Router } from "express";
 import { AuthenticatedUser, Login, Logout, Register, UpdateInfo, UpdatePassword } from "./controller/auth.controller";
+import { Classifications } from "./controller/classification.controller";
+import { CreateExpense, DeleteExpense, Expenses, GetExpense, UpdateExpense } from "./controller/c_expenses.controller";
+import { C_weeks } from "./controller/c_week.controller";
 import { Upload } from "./controller/image.controller";
 import { Chart, Export, Orders } from "./controller/order.controller";
 import { Permissions } from "./controller/permission.controller";
 import { CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct } from "./controller/product.controller";
 import { CreateRole, DeleteRole, GetRole, Roles, UpdateRole } from "./controller/role.controller";
+import { Tx_types } from "./controller/tx_type.controller";
 import { CreateUser, DeleteUser, GetUser, UpdateUser, Users } from "./controller/user.controller";
 import { AuthMiddleware } from "./middleware/auth.middleware";
 import { PermissionMiddleware } from "./middleware/permission.middleware";
@@ -25,6 +29,9 @@ export const routes = (router: Router) => {
     router.delete('/api/users/:id_person', AuthMiddleware, PermissionMiddleware('users'), DeleteUser);
 
     router.get('/api/permissions', AuthMiddleware, Permissions);
+    router.get('/api/classifications', AuthMiddleware, Classifications);
+    router.get('/api/tx_types', AuthMiddleware, Tx_types);
+    router.get('/api/c_weeks', AuthMiddleware, C_weeks);
 
     router.get('/api/roles', AuthMiddleware, Roles);
     router.post('/api/roles', AuthMiddleware, CreateRole);
@@ -37,6 +44,12 @@ export const routes = (router: Router) => {
     router.get('/api/products/:id_product', AuthMiddleware, PermissionMiddleware('products'), GetProduct);
     router.put('/api/products/:id_product', AuthMiddleware, PermissionMiddleware('products'), UpdateProduct);
     router.delete('/api/products/:id_product', AuthMiddleware, PermissionMiddleware('products'), DeleteProduct);
+
+    router.get('/api/expenses', AuthMiddleware, PermissionMiddleware('expenses'), Expenses);
+    router.post('/api/expenses', AuthMiddleware, PermissionMiddleware('expenses'), CreateExpense);
+    router.get('/api/expenses/:id_expenses', AuthMiddleware, PermissionMiddleware('expenses'), GetExpense);
+    router.put('/api/expenses/:id_expenses', AuthMiddleware, PermissionMiddleware('expenses'), UpdateExpense);
+    router.delete('/api/expenses/:id_expenses', AuthMiddleware, PermissionMiddleware('expenses'), DeleteExpense);
 
     router.post('/api/upload', AuthMiddleware, Upload);
     router.use('/api/uploads', express.static('./uploads'));

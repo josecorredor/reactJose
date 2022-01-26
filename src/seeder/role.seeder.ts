@@ -8,7 +8,7 @@ createConnection().then(async connection => {
 
     let permissions = [];
 
-    const perms = ['view_users', 'edit_users', 'view_roles', 'edit_roles', 'view_products', 'edit_products', 'view_orders', 'edit_orders'];
+    const perms = ['view_users', 'edit_users', 'view_roles', 'edit_roles', 'view_products', 'edit_products', 'view_orders', 'edit_orders', 'view_expenses','edit_expenses'];
 
     for (let i=0; i< perms.length; i++){
         permissions.push(await permissionRepository.save({
