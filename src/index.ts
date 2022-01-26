@@ -18,7 +18,8 @@ createConnection().then(connection => {
   };
 
   routes(app);
-  app.listen(8000, () => {
+  const port = process.env.port || 8000;
+  app.listen(port, () => {
       console.log('Listening to port 8000')
   });
 });
