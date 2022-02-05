@@ -4,7 +4,7 @@ import { Classifications } from "./controller/classification.controller";
 import { CreateExpense, DeleteExpense, Expenses, GetExpense, UpdateExpense } from "./controller/c_expenses.controller";
 import { C_weeks } from "./controller/c_week.controller";
 import { Upload } from "./controller/image.controller";
-import { Chart, Export, Orders } from "./controller/order.controller";
+import { Chart, ChartBank, ChartCurrentDebt, ChartDebts, ChartExpDet, ChartIncomesJose, ChartIncomesPaola, ChartIncomesW, ChartInitialDebt, ChartKindExp, ChartKindExp1, ChartOutcomesW, ChartSavings, ChartSavingsR, ChartStateDebt, ChartWeek, Export, Orders } from "./controller/order.controller";
 import { Permissions } from "./controller/permission.controller";
 import { CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct } from "./controller/product.controller";
 import { CreateRole, DeleteRole, GetRole, Roles, UpdateRole } from "./controller/role.controller";
@@ -57,4 +57,19 @@ export const routes = (router: Router) => {
     router.get('/api/orders', AuthMiddleware, Orders);
     router.post('/api/export', AuthMiddleware, Export);
     router.get('/api/chart', AuthMiddleware, Chart);
+    router.get('/api/chartSaving', AuthMiddleware, ChartSavings);
+    router.get('/api/chartSavingR', AuthMiddleware, ChartSavingsR);
+    router.get('/api/chartCurrentDebt', AuthMiddleware, ChartCurrentDebt);
+    router.get('/api/chartInitialDebt', AuthMiddleware, ChartInitialDebt);
+    router.get('/api/chartIncomesW', AuthMiddleware, ChartIncomesW);
+    router.get('/api/chartOutcomesW', AuthMiddleware, ChartOutcomesW);
+    router.get('/api/chartBank', AuthMiddleware, ChartBank);
+    router.get('/api/chartDebts', AuthMiddleware, ChartDebts);
+    router.get('/api/chartExpDet', AuthMiddleware, ChartExpDet);
+    router.get('/api/chartKindExp', AuthMiddleware, ChartKindExp);
+    router.get('/api/chartKindExp1', AuthMiddleware, ChartKindExp1);
+    router.get('/api/chartStateDebt', AuthMiddleware, ChartStateDebt);
+    router.get('/api/chartIncomesJ', AuthMiddleware, ChartIncomesJose);
+    router.get('/api/chartSIncomesP', AuthMiddleware, ChartIncomesPaola);
+    router.get('/api/chartWeek', AuthMiddleware, ChartWeek);
 }
