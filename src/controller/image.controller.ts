@@ -19,7 +19,7 @@ export const Upload = async (req:Request, res:Response) => {
             return res.send(400).send(err);
         }
         res.send({
-            url: `http://localhost:8000/api/uploads/${req.file.filename}`
+            url: `http://3.26.18.43:8000/api/uploads/${req.file.filename}`
         })
 
     })    
