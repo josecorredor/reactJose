@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/app.ts",
+    "start": "tsc && node ./dist/app.js",
+    "pm2": "tsc && pm2 start pm2.config.js",
+    "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
     "roles:seed": "ts-node src/seeder/role.seeder.ts",
     "products:seed": "ts-node src/seeder/product.seeder.ts",
     "orders:seed": "ts-node src/seeder/order.seeder.ts"

@@ -89,7 +89,7 @@ export const ChartSavings = async (req: Request, res: Response) =>{
     const result = await manager.query(
         `SELECT detail as Item, SUM(value * -1) as Total 
         FROM \`c_expenses\` WHERE \`id_tx_type\` = 1 AND \`id_classification\`=30
-        GROUP BY detail, value`
+        GROUP BY detail`
     );
     res.send(result);
     
@@ -101,7 +101,7 @@ export const ChartSavingsR = async (req: Request, res: Response) =>{
     const result = await manager.query(
         `SELECT detail as Item, SUM(value) as Total 
         FROM \`c_expenses\` WHERE \`id_tx_type\` = 1 AND \`id_classification\`=31
-        GROUP BY detail, value`
+        GROUP BY detail`
     );
     res.send(result);
     
