@@ -214,7 +214,7 @@ export const ChartKindExp = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND (id_person =1 OR id_person = 2)
         GROUP BY a.id_week
-        LIMIT 5`
+        LIMIT 7`
     );
     res.send(result);
     
@@ -229,7 +229,7 @@ export const ChartKindExp1 = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 1 AND a.id_classification != 28 AND a.id_classification != 29 AND a.id_classification != 31
         GROUP BY a.id_week
-        LIMIT 5`
+        LIMIT 7`
     );
     res.send(result);
     
@@ -244,7 +244,7 @@ export const ChartIncomesJose = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND id_person =1
         GROUP BY a.id_week
-        LIMIT 5`
+        LIMIT 7`
     );
     res.send(result);
     
@@ -259,7 +259,7 @@ export const ChartIncomesPaola = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND id_person =2
         GROUP BY a.id_week
-        LIMIT 5`
+        LIMIT 7`
     );
     res.send(result);
     
