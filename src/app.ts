@@ -11,8 +11,8 @@ createConnection().then(connection => {
   app.use(express.json());
   app.use(cookieParser());
 
-  const allowedOrigins = ['http://localhost:3000'];
-  // const allowedOrigins = ['http://3.26.18.43:3000'];
+  // const allowedOrigins = ['http://localhost:3000'];
+  const allowedOrigins = ['http://3.26.18.43:3000'];
   const options: cors.CorsOptions = {
     credentials:true,
     origin: "allowedOrigins"
