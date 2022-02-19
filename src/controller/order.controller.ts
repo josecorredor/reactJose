@@ -41,7 +41,7 @@ export const Export = async (req:Request, res: Response) => {
     const repository = getManager().getRepository(Order);
     const orders = await repository.find({relations:['order_items']});
 
-    const json = [];
+    const json:any = [];
 
     orders.forEach((order: Order) => {
        json.push({
