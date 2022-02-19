@@ -175,7 +175,7 @@ const ChartKindExp = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND (id_person =1 OR id_person = 2)
         GROUP BY a.id_week
-        LIMIT 5`);
+        LIMIT 7`);
     res.send(result);
 });
 exports.ChartKindExp = ChartKindExp;
@@ -186,7 +186,7 @@ const ChartKindExp1 = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 1 AND a.id_classification != 28 AND a.id_classification != 29 AND a.id_classification != 31
         GROUP BY a.id_week
-        LIMIT 5`);
+        LIMIT 7`);
     res.send(result);
 });
 exports.ChartKindExp1 = ChartKindExp1;
@@ -197,7 +197,7 @@ const ChartIncomesJose = (req, res) => __awaiter(void 0, void 0, void 0, functio
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND id_person =1
         GROUP BY a.id_week
-        LIMIT 5`);
+        LIMIT 7`);
     res.send(result);
 });
 exports.ChartIncomesJose = ChartIncomesJose;
@@ -208,7 +208,7 @@ const ChartIncomesPaola = (req, res) => __awaiter(void 0, void 0, void 0, functi
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND id_person =2
         GROUP BY a.id_week
-        LIMIT 5`);
+        LIMIT 7`);
     res.send(result);
 });
 exports.ChartIncomesPaola = ChartIncomesPaola;
