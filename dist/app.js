@@ -19,8 +19,8 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
         origin: "allowedOrigins"
     };
     (0, routes_1.routes)(app);
-    const port = process.env.PORT || 80;
+    const port = process.env.PORT || 8000;
     app.listen(port, () => {
-        console.log('Listening to port 80');
+        console.log('Listening to port 8000');
     });
 });
