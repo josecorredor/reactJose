@@ -9,7 +9,7 @@ import { Permissions } from "./controller/permission.controller";
 import { CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct } from "./controller/product.controller";
 import { CreateRole, DeleteRole, GetRole, Roles, UpdateRole } from "./controller/role.controller";
 import { Tx_types } from "./controller/tx_type.controller";
-import { CreateUser, DeleteUser, GetUser, UpdateUser, Users } from "./controller/user.controller";
+import { CreateUser, DeleteUser, GetUser, UpdateUser, Users } from "./controller/c_person.controller";
 import { AuthMiddleware } from "./middleware/auth.middleware";
 import { PermissionMiddleware } from "./middleware/permission.middleware";
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getManager } from "typeorm";
-import { c_person } from "../entity/user.entity";
+import { c_person } from "../entity/c_person.entity";
 import { RegisterValidation } from "../validation/register.validation";
 import bcryptjs from "bcryptjs";
 import { sign, verify } from "jsonwebtoken";

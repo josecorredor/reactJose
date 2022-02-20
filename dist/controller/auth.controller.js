@@ -25,7 +25,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdatePassword = exports.UpdateInfo = exports.Logout = exports.AuthenticatedUser = exports.Login = exports.Register = void 0;
 const typeorm_1 = require("typeorm");
-const user_entity_1 = require("../entity/user.entity");
+const c_person_entity_1 = require("../entity/c_person.entity");
 const register_validation_1 = require("../validation/register.validation");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = require("jsonwebtoken");
@@ -40,7 +40,7 @@ const Register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             message: "Password's do not match"
         });
     }
-    const repository = (0, typeorm_1.getManager)().getRepository(user_entity_1.c_person);
+    const repository = (0, typeorm_1.getManager)().getRepository(c_person_entity_1.c_person);
     const _a = yield repository.save({
         name: body.name,
         last_name: body.last_name,
@@ -56,7 +56,7 @@ const Register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.Register = Register;
 const Login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const repository = (0, typeorm_1.getManager)().getRepository(user_entity_1.c_person);
+    const repository = (0, typeorm_1.getManager)().getRepository(c_person_entity_1.c_person);
     const C_person = yield repository.findOne({ email: req.body.email });
     if (!C_person) {
         return res.status(404).send({
@@ -93,7 +93,7 @@ const Logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.Logout = Logout;
 const UpdateInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req["user"];
-    const repository = (0, typeorm_1.getManager)().getRepository(user_entity_1.c_person);
+    const repository = (0, typeorm_1.getManager)().getRepository(c_person_entity_1.c_person);
     yield repository.update(user.id_person, req.body);
     const _c = yield repository.findOne(user.id_person), { password } = _c, data = __rest(_c, ["password"]);
     res.send(data);
@@ -106,7 +106,7 @@ const UpdatePassword = (req, res) => __awaiter(void 0, void 0, void 0, function*
             message: "Password's do not match"
         });
     }
-    const repository = (0, typeorm_1.getManager)().getRepository(user_entity_1.c_person);
+    const repository = (0, typeorm_1.getManager)().getRepository(c_person_entity_1.c_person);
     yield repository.update(user.id_person, {
         password: yield bcryptjs_1.default.hash(req.body.password, 10)
     });

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 import { getManager } from "typeorm";
-import { c_person } from "../entity/user.entity";
+import { c_person } from "../entity/c_person.entity";
 
 
 export const AuthMiddleware = async (req: Request, res: Response, next: Function) => {

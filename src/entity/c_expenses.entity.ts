@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 import { C_classification } from "./classification.entity";
 import { C_week } from "./c_week.entity";
 import { Tx_type } from "./tx_type.entity";
-import { c_person } from "./user.entity";
+import { c_person } from "./c_person.entity";
 
 
 @Entity()

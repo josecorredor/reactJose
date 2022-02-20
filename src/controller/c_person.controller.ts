@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { getManager, getRepository } from "typeorm"
-import { c_person } from "../entity/user.entity"
+import { c_person } from "../entity/c_person.entity"
 import bcryptjs from "bcryptjs"
 import { send } from "process"
 

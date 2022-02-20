@@ -14,7 +14,7 @@ const typeorm_1 = require("typeorm");
 const classification_entity_1 = require("./classification.entity");
 const c_week_entity_1 = require("./c_week.entity");
 const tx_type_entity_1 = require("./tx_type.entity");
-const user_entity_1 = require("./user.entity");
+const c_person_entity_1 = require("./c_person.entity");
 let C_expenses = class C_expenses {
 };
 __decorate([
@@ -40,9 +40,9 @@ __decorate([
     __metadata("design:type", c_week_entity_1.C_week)
 ], C_expenses.prototype, "week", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.c_person),
+    (0, typeorm_1.ManyToOne)(() => c_person_entity_1.c_person),
     (0, typeorm_1.JoinColumn)({ name: 'id_person' }),
-    __metadata("design:type", user_entity_1.c_person)
+    __metadata("design:type", c_person_entity_1.c_person)
 ], C_expenses.prototype, "user", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => tx_type_entity_1.Tx_type),

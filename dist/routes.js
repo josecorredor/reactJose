@@ -15,7 +15,7 @@ const permission_controller_1 = require("./controller/permission.controller");
 const product_controller_1 = require("./controller/product.controller");
 const role_controller_1 = require("./controller/role.controller");
 const tx_type_controller_1 = require("./controller/tx_type.controller");
-const user_controller_1 = require("./controller/user.controller");
+const c_person_controller_1 = require("./controller/c_person.controller");
 const auth_middleware_1 = require("./middleware/auth.middleware");
 const permission_middleware_1 = require("./middleware/permission.middleware");
 const routes = (router) => {
@@ -25,11 +25,11 @@ const routes = (router) => {
     router.post('/api/logout', auth_middleware_1.AuthMiddleware, auth_controller_1.Logout);
     router.put('/api/users/info', auth_middleware_1.AuthMiddleware, auth_controller_1.UpdateInfo);
     router.put('/api/users/password', auth_middleware_1.AuthMiddleware, auth_controller_1.UpdatePassword);
-    router.get('/api/users', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), user_controller_1.Users);
-    router.post('/api/users', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), user_controller_1.CreateUser);
-    router.get('/api/users/:id_person', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), user_controller_1.GetUser);
-    router.put('/api/users/:id_person', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), user_controller_1.UpdateUser);
-    router.delete('/api/users/:id_person', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), user_controller_1.DeleteUser);
+    router.get('/api/users', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), c_person_controller_1.Users);
+    router.post('/api/users', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), c_person_controller_1.CreateUser);
+    router.get('/api/users/:id_person', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), c_person_controller_1.GetUser);
+    router.put('/api/users/:id_person', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), c_person_controller_1.UpdateUser);
+    router.delete('/api/users/:id_person', auth_middleware_1.AuthMiddleware, (0, permission_middleware_1.PermissionMiddleware)('users'), c_person_controller_1.DeleteUser);
     router.get('/api/permissions', auth_middleware_1.AuthMiddleware, permission_controller_1.Permissions);
     router.get('/api/classifications', auth_middleware_1.AuthMiddleware, classification_controller_1.Classifications);
     router.get('/api/tx_types', auth_middleware_1.AuthMiddleware, tx_type_controller_1.Tx_types);

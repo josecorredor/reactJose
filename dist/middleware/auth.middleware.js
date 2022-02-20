@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthMiddleware = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
 const typeorm_1 = require("typeorm");
-const user_entity_1 = require("../entity/user.entity");
+const c_person_entity_1 = require("../entity/c_person.entity");
 const AuthMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const jwt = req.cookies['jwt'];
@@ -22,7 +22,7 @@ const AuthMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
                 message: 'unautenticated'
             });
         }
-        const repository = (0, typeorm_1.getManager)().getRepository(user_entity_1.c_person);
+        const repository = (0, typeorm_1.getManager)().getRepository(c_person_entity_1.c_person);
         req["user"] = yield repository.findOne(payload.id_person, { relations: ['role', 'role.permissions'] });
         next();
     }

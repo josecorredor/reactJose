@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { c_person } from "../entity/user.entity";
+import { c_person } from "../entity/c_person.entity";
 
 export const PermissionMiddleware = (access: string) => {
     return (req: Request, res: Response, next: Function) => {
