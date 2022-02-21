@@ -6,7 +6,8 @@
     "password": "Brisbane2020",
     "database": "linqueat_powerbi",
     "entities": [
-      "src/entity/*.ts"
+      "src/entity/*.ts", 
+      "dist/entity/*.js"
     ],
     "logging": false,
     "synchronize": true 
