@@ -161,6 +161,26 @@ export const ChartIncomesW = async (req: Request, res: Response) =>{
     res.send(result);
     
 }
+//SUM Jose's Fiscal Year
+export const ChartFiscalJose = async (req: Request, res: Response) =>{
+    const manager = getManager();
+
+    const result = await manager.query(
+        `SELECT FORMAT(SUM(ABS(value)),0) as valJosFis FROM c_expenses WHERE id_tx_type = 2 AND detail != "DEUDA ANT" AND detail != "TAX" AND detail != "AVANCE" AND detail != "SEBAS COL" AND detail != "APPLE PCs" AND value > 0 AND id_person != 2 AND (id_week >= 26 AND id_week <= 78);`
+    );
+    res.send(result);
+    
+}
+//SUM Jose's Paols Year
+export const ChartFiscalPaola = async (req: Request, res: Response) =>{
+    const manager = getManager();
+
+    const result = await manager.query(
+        `SELECT FORMAT(SUM(ABS(value)),0) as valPaoFis FROM c_expenses WHERE id_tx_type = 2 AND detail != "DEUDA ANT" AND detail != "TAX" AND detail != "AVANCE" AND detail != "SEBAS COL" AND detail != "APPLE PCs" AND value > 0 AND id_person = 2 AND (id_week >= 26 AND id_week <= 78);`
+    );
+    res.send(result);
+    
+}
 export const ChartOutcomesW = async (req: Request, res: Response) =>{
     const manager = getManager();
 
@@ -205,6 +225,7 @@ export const ChartExpDet = async (req: Request, res: Response) =>{
     res.send(result);
     
 }
+//Incomes Jose Paola semanal
 export const ChartKindExp = async (req: Request, res: Response) =>{
     const manager = getManager();
 
@@ -214,12 +235,12 @@ export const ChartKindExp = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND (id_person =1 OR id_person = 2)
         GROUP BY a.id_week
-        LIMIT 7`
+        LIMIT 20`
     );
     res.send(result);
     
 }
-
+//Outcomes Jose Paola semanal
 export const ChartKindExp1 = async (req: Request, res: Response) =>{
     const manager = getManager();
 
@@ -229,7 +250,7 @@ export const ChartKindExp1 = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 1 AND a.id_classification != 28 AND a.id_classification != 29 AND a.id_classification != 31
         GROUP BY a.id_week
-        LIMIT 7`
+        LIMIT 20`
     );
     res.send(result);
     
@@ -244,7 +265,7 @@ export const ChartIncomesJose = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND id_person =1
         GROUP BY a.id_week
-        LIMIT 7`
+        LIMIT 20`
     );
     res.send(result);
     
@@ -259,8 +280,68 @@ export const ChartIncomesPaola = async (req: Request, res: Response) =>{
         INNER JOIN c_week as b ON b.id_week = a.id_week
         WHERE b.year = (SELECT max(c.year) FROM c_week as c) AND a.id_tx_type = 2 AND id_person =2
         GROUP BY a.id_week
-        LIMIT 7`
+        LIMIT 20`
     );
     res.send(result);
     
+}
+//Petrol
+export const ChartLinePetCom2= async (req: Request, res: Response) =>{
+    const manager = getManager();
+
+    const result = await manager.query(
+        `SELECT b.name, b.date_s, SUM(ABS(a.value)) as valexp
+        FROM c_expenses as a 
+        INNER JOIN c_week as b ON b.id_week = a.id_week
+        WHERE b.year = (SELECT max(c.year) FROM c_week as c)
+        AND a.id_classification = 10
+        GROUP BY a.id_week
+        LIMIT 20;`
+    );
+    res.send(result);
+    
+}
+//Food
+export const ChartLinePetCom1 = async (req: Request, res: Response) =>{
+    const manager = getManager();
+
+    const result = await manager.query(
+        `SELECT b.name, b.date_s, SUM(ABS(a.value)) as valexp
+        FROM c_expenses as a 
+        INNER JOIN c_week as b ON b.id_week = a.id_week
+        WHERE b.year = (SELECT max(c.year) FROM c_week as c)
+        AND a.id_classification = 3
+        GROUP BY a.id_week
+        LIMIT 20;`
+    );
+    res.send(result);
+    
+}
+
+//Paola Fiscal
+export const ChartPaolaFiscal= async (req: Request, res: Response) =>{
+    const manager = getManager();
+
+    const result = await manager.query(
+        `SELECT detail, id_person, SUM(ABS(value)) as valor FROM c_expenses 
+        WHERE id_tx_type = 2 AND detail != "DEUDA ANT" AND detail != "TAX" 
+        AND detail != "AVANCE" AND detail != "SEBAS COL" AND detail != "APPLE PCs" 
+        AND value > 0 AND id_person = 2 AND (id_week >= 26 AND id_week <= 78) 
+        GROUP BY detail, id_person;`
+    );
+    res.send(result);
+    
+}
+//Jose Fiscal
+export const ChartJoseFiscal = async (req: Request, res: Response) =>{
+    const manager = getManager();
+
+    const result = await manager.query(
+        `SELECT detail, id_person, SUM(ABS(value)) as valor FROM c_expenses 
+        WHERE id_tx_type = 2 AND detail != "DEUDA ANT" AND detail != "TAX" 
+        AND detail != "AVANCE" AND detail != "SEBAS COL" AND detail != "APPLE PCs" 
+        AND value > 0 AND id_person != 2 AND (id_week >= 26 AND id_week <= 78) 
+        GROUP BY detail, id_person;`
+    );
+    res.send(result);
 }

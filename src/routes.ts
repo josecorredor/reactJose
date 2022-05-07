@@ -4,7 +4,7 @@ import { Classifications } from "./controller/classification.controller";
 import { CreateExpense, DeleteExpense, Expenses, GetExpense, UpdateExpense } from "./controller/c_expenses.controller";
 import { C_weeks } from "./controller/c_week.controller";
 import { Upload } from "./controller/image.controller";
-import { Chart, ChartBank, ChartCurrentDebt, ChartDebts, ChartExpDet, ChartIncomesJose, ChartIncomesPaola, ChartIncomesW, ChartInitialDebt, ChartKindExp, ChartKindExp1, ChartOutcomesW, ChartSavings, ChartSavingsR, ChartStateDebt, ChartWeek, Export, Orders } from "./controller/order.controller";
+import { Chart, ChartBank, ChartCurrentDebt, ChartDebts, ChartExpDet, ChartFiscalJose, ChartFiscalPaola, ChartIncomesJose, ChartIncomesPaola, ChartIncomesW, ChartInitialDebt, ChartJoseFiscal, ChartKindExp, ChartKindExp1, ChartLinePetCom1, ChartLinePetCom2, ChartOutcomesW, ChartPaolaFiscal, ChartSavings, ChartSavingsR, ChartStateDebt, ChartWeek, Export, Orders } from "./controller/order.controller";
 import { Permissions } from "./controller/permission.controller";
 import { CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct } from "./controller/product.controller";
 import { CreateRole, DeleteRole, GetRole, Roles, UpdateRole } from "./controller/role.controller";
@@ -72,4 +72,10 @@ export const routes = (router: Router) => {
     router.get('/api/chartIncomesJ', AuthMiddleware, ChartIncomesJose);
     router.get('/api/chartSIncomesP', AuthMiddleware, ChartIncomesPaola);
     router.get('/api/chartWeek', AuthMiddleware, ChartWeek);
+    router.get('/api/chartPetrol', AuthMiddleware, ChartLinePetCom2);
+    router.get('/api/chartFood', AuthMiddleware, ChartLinePetCom1);
+    router.get('/api/chartFiscalJ', AuthMiddleware, ChartJoseFiscal);
+    router.get('/api/chartFiscalP', AuthMiddleware, ChartPaolaFiscal);
+    router.get('/api/chartFiscalSJ', AuthMiddleware, ChartFiscalJose);
+    router.get('/api/chartFiscalSP', AuthMiddleware, ChartFiscalPaola);
 }
